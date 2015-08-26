@@ -6,6 +6,7 @@ layout: default
 
     <h1 class="page-heading">Posts</h1>
 
+<!--
     <ul class="post-list">
     {% for post in paginator.posts %}
         <li>
@@ -16,8 +17,10 @@ layout: default
         </li>
     {% endfor %}
     </ul>
+-->
     
     <!-- Pagination links -->
+<!--
     <div class="pagination">
     {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path }}" class="previous">Prev</a>
@@ -30,6 +33,27 @@ layout: default
     {% else %}
         <span class="next ">Next</span>
     {% endif %}
+    </div>
+-->
+    
+    <div class="category">
+    {% for category in site.categories %}
+        <li>{{ category | first }}
+            <ul>
+            {% for posts in category %}
+                {% for post in posts %}
+                    {% if post.title %}
+                    <li>
+                        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+                        <span> - </span>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
     </div>
 
 </div>
